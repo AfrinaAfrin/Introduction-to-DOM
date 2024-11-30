@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic To-Do List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 20px;
+      background-color: #f4f4f9;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      width: 300px;
+      margin-right: 10px;
+    }
+    button {
+      padding: 10px 15px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #ffffff;
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    li.completed {
+      text-decoration: line-through;
+      color: gray;
+    }
+    .task-buttons button {
+      margin-left: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Dynamic To-Do List</h1>
+  <input type="text" id="task-input" placeholder="Enter a new task" />
+  <button id="add-task-btn">Add Task</button>
+  <ul id="task-list"></ul>
+
+  <script>
+    
+    const taskInput = document.getElementById('task-input');
+    const addTaskButton = document.getElementById('add-task-btn');
+    const taskList = document.getElementById('task-list');
+
+     
+    function addTask() {
+      const taskText = taskInput.value.trim();  
+      if (taskText === '') {
+        alert('Please enter a task!');  
+        return;
+      }
+
+      
+      const listItem = document.createElement('li');
+
+       
+      const taskSpan = document.createElement('span');
+      taskSpan.textContent = taskText;
+
+       
+      const buttonContainer = document.createElement('div');
+      buttonContainer.classList.add('task-buttons');
+
+       
+      const completeButton = document.createElement('button');
+      completeButton.textContent = 'Complete';
+      completeButton.addEventListener('click', () => {
+        listItem.classList.toggle('completed');  
+      });
+
+       
+      const deleteButton = document.createElement('button');
+      deleteButton.textContent = 'Delete';
+      deleteButton.addEventListener('click', () => {
+        listItem.remove();  
+      });
+
+       
+      buttonContainer.appendChild(completeButton);
+      buttonContainer.appendChild(deleteButton);
+
+      
+      listItem.appendChild(taskSpan);
+      listItem.appendChild(buttonContainer);
+
+       
+      taskList.appendChild(listItem);
+
+       
+      taskInput.value = '';
+    }
+
+     
+    addTaskButton.addEventListener('click', addTask);
+
+    
+    taskInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        addTask();
+      }
+    });
+  </script>
+</body>
+</html>
