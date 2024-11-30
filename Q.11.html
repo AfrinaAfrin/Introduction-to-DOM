@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: darkgreen;
+        }
+        p {
+            font-size: 16px;
+        }
+        .container {
+            padding: 10px;
+            border: 2px solid black;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="main-heading">Hello, World!</h1>
+    <p>Paragraph 1</p>
+    <p>Paragraph 2</p>
+    <p>Paragraph 3</p>
+    <div class="container">
+        <p>This is a paragraph inside the container div.</p>
+    </div>
+    <script>
+         
+        document.getElementById("main-heading").textContent = "Welcome to the DOM World!";
+
+         
+        const paragraphs = document.getElementsByTagName("p");
+        for (let i = 0; i < paragraphs.length; i++) {
+            paragraphs[i].style.color = "blue";
+        }
+
+         
+        const containerDiv = document.querySelector(".container");
+        containerDiv.style.backgroundColor = "yellow";
+    </script>
+</body>
+</html>
