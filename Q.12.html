@@ -1,13 +1,70 @@
-L0 - Basic DOM Manipulation
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic DOM Manipulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+        .odd {
+            font-weight: bold;
+            color: blue;
+        }
+        .even {
+            font-style: italic;
+            color: red;
+        }
+        button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Basic DOM Manipulation</h1>
+    <ul id="item-list">
+        <li class="odd">Item 1</li>
+        <li class="even">Item 2</li>
+        <li class="odd">Item 3</li>
+    </ul>
+    <button id="add-item-btn">Add Item</button>
 
-Problem Statement:
-Build a simple webpage with the following structure:
+    <script>
+         
+        const ul = document.querySelector("#item-list");
+        const button = document.querySelector("#add-item-btn");
 
-A <ul> with three <li> items.
-A <button> with the text "Add Item".
-Write JavaScript to:
+         
+        button.addEventListener("click", () => {
+             
+            const newLi = document.createElement("li");
 
-Select the <ul> using querySelector and add a new <li> element with the text "New Item" whenever the button is clicked.
-Ensure each newly added <li> is styled with a bold font & blue colour if the sequence number of the li is odd and if the sequence no. is even style the li with italic font & red colour. .
-Submission Guidelines:
-Submit your Masai GitHub repository link containing the HTML and JavaScript files.
+             
+            const newItemNumber = ul.children.length + 1;
+            newLi.textContent = `Item ${newItemNumber}`;
+
+             
+            if (newItemNumber % 2 === 0) {
+                newLi.classList.add("even");
+            } else {
+                newLi.classList.add("odd");
+            }
+
+            
+            ul.appendChild(newLi);
+        });
+    </script>
+</body>
+</html>
